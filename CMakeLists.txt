@@ -7,9 +7,9 @@ option(ENABLE_TEST "Enable google test" ON)
 option(ENABLE_DOCS "Enable doxygen docs" ON)
 
 # just for qt
-# set(CMAKE_AUTOUIC ON)
-# set(CMAKE_AUTOMOC ON)
-# set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -40,7 +40,14 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${${PROJECT_NAME}_ROOT_DIR}/out/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${${PROJECT_NAME}_ROOT_DIR}/out/bin)
 # vendors dir
 set(VENDORS_DIR ${CMAKE_SOURCE_DIR}/src/Vendors)
+set(QRCFILE ${CMAKE_SOURCE_DIR}/resources/resources.qrc)
+set(APP_ICON_RESOURCE_WINDOWS  ${CMAKE_SOURCE_DIR}/resources/appicon.rc)
 
+find_package(Qt6 COMPONENTS
+        Core
+        Gui
+        Widgets
+        REQUIRED)
 add_subdirectory(src)
 
 if(ENABLE_TEST)
